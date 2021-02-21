@@ -1,18 +1,32 @@
-<%= link_to "back", cocktail_path(@cocktail) %>
-<h1>Edit <%= @cocktail.name %></h1>
+<div class= "text-center py-3">
+  <span class="show-title">Edit <%= @cocktail.name %> <i class="fas fa-mortar-pestle"></i></span>
+</div>
 
-<%= render "form", cocktail: @cocktail %>
-
-<hr>
-<%= render "doses/new", cocktail: @cocktail, dose: @dose %>
-<hr>
-
-<% @cocktail.doses.each do |dose| %>
-  <p>
-    <%= "#{dose.description} of #{dose.ingredient.name}" %>
-    <%= link_to dose_path(dose), method: :delete do %>
-      <i class="fas fa-minus-circle"></i>
+<div class="row d-flex justify-content-center">
+  <div class="col-5 d-flex justify-content-end">
+    <%= cl_image_tag(@cocktail.photo.key, transformation: [ {crop: "crop", width: 900, height:900},
+                                                          {width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}]) %>
+  </div>
+  <div class="col-5 align-self-center">
+    <% @cocktail.doses.each do |dose| %>
+      <p>
+        <%= "#{dose.description} of #{dose.ingredient.name}" %>
+        <%= link_to dose_path(dose), method: :delete, remote: true do %>
+          <i class="fas fa-minus-circle text-danger"></i>
+        <% end %>
+      </p>
     <% end %>
-  </p>
-<% end %>
+  </div>
+</div>
 
+<div class="row d-flex justify-content-center pt-3">
+  <%= render "form", cocktail: @cocktail %>
+</div>
+
+<%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+
+<div class="my-3">
+  <%= link_to cocktail_path(@cocktail) do %>
+    <i class="fas fa-backward icon-link text-success"></i>
+  <% end %>
+</div>

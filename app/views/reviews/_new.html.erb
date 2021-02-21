@@ -1,9 +1,13 @@
 <h3>Review this cocktail</h3>
-<%= simple_form_for [cocktail, review], html: { class: "row" } do |f| %>
-  <%= f.input :content, label: false, input_html: { placeholder: "Add your review here...", class: "form-control-sm w-100" } %>
-  <div class="input-group row w-100">
-    <%= f.input :rating, collection: [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5], include_blank: "Choose a rating...", include_hidden: false, label: false, input_html: { class: "form-control-sm col-4" }, class:"col" %>
-    <%= f.input :user, label: false, input_html: { placeholder: "Your name", class: "form-control-sm col-4" }, class:"col" %>
+<%= simple_form_for [cocktail, review], html: { class: "row g-3" } do |f| %>
+  <div class="col-12">
+    <%= f.input :content, label: false, input_html: { placeholder: "Add your review here...", class: "form-control-sm w-100" } %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :rating, collection: [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5], include_blank: "Choose a rating...", include_hidden: false, label: false, input_html: { class: "form-control" } %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :user, label: false, input_html: { placeholder: "Your name", class: "form-control" } %>
   </div>
   <%= f.submit "review", class: "btn btn-sm btn-success"%>
 <% end %>

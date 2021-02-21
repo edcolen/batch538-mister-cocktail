@@ -1,6 +1,14 @@
-<h3>Add a new dose</h3>
-<%= simple_form_for [cocktail, dose] do |f| %>
-  <%= f.input :description, label: false, input_html: {placeholder: "Add a description here..."} %>
-  <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
-  <%= f.submit class: "btn btn-sm btn-success" %>
+<div class= "text-center pt-3">
+  <span class="secondary-title">Add a new dose</span>
+</div>
+<%= simple_form_for [cocktail, dose], html: {class: "row g-3"} do |f| %>
+  <div class="col-md-5">
+    <%= f.input :description, label: false, input_html: { placeholder: "Add a description here...", class: "form-control" }, as: :string %>
+  </div>
+  <div class="col-md-5">
+    <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, input_html: { class: "form-control" } %>
+  </div>
+  <div class="col-md-2 d-grid gap-2">
+    <%= f.submit "add dose", class: "btn btn-success" %>
+  </div>
 <% end %>
