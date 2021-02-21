@@ -1,6 +1,7 @@
 <%= simple_form_for cocktail do |f| %>
   <div class="input-group">
     <%= f.input :name, label: false, input_html: {placeholder: "Name", class: "form-control-sm"} %>
+    <%= f.input :photo %>
     <%= f.submit class: "btn btn-sm btn-success" %>
   </div>
 <% end %>
