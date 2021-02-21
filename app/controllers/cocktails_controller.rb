@@ -2,7 +2,7 @@ class CocktailsController < ApplicationController
   before_action :set_cocktail, only: %i[show edit update destroy]
 
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.all.shuffle
     @search = params.dig :search, :name
     @cocktails = Cocktail.where('lower(name) like ?', "%#{@search.downcase}%") if @search.present?
   end
