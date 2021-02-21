@@ -20,14 +20,18 @@ puts '-----------------------------'
 puts 'Mixing some drinks...'
 puts '-----------------------------'
 
-quantities = ['3 spoons', '200ml', '100ml', '50ml', '2 leaves', '2 spoons', 'a bit of']
+quantities = ['3 spoons', '200ml', '100ml', '50ml', '2 leaves', '2 spoons', 'a bit']
 
 20.times do
   cocktail = Cocktail.create!(name: Faker::Coffee.unique.blend_name)
-  rand(1..5).times do
+  rand(3..6).times do
+    possible_ingredient = Ingredient.all.sample
+
+    possible_ingredient = Ingredient.all.sample while cocktail.ingredients.include?(possible_ingredient)
+
     Dose.create!(
       cocktail: cocktail,
-      ingredient: Ingredient.all.sample,
+      ingredient: possible_ingredient,
       description: quantities.sample
     )
   end
@@ -42,7 +46,7 @@ puts '-----------------------------'
 50.times do
   review = Review.create!(
     cocktail: Cocktail.all.sample,
-    content: Faker::Hipster.paragraph,
+    content: Faker::ChuckNorris.fact,
     rating: rand(1.0..5.0).round(1),
     user: Faker::GreekPhilosophers.name
   )
