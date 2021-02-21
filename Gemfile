@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap', '~> 5.0.0.beta1'
 
 gem 'autoprefixer-rails'
+gem 'cloudinary'
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'simple_form'
