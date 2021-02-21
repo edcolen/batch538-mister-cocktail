@@ -1,24 +1,13 @@
-<%= link_to root_path do %>
-  <h1>Marcelinho Hipster Cocktails</h1>
-<% end %>
-
-<div class="row py-3">
-  <div class="col-4">
-    <%= button_to "create a new cocktail", new_cocktail_path, method: :get, class: "btn btn-sm btn-success"%>
+<div class="container mt-4">
+  <div class="row d-flex justify-content-center">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-5 my-3">
+        <%= link_to cocktail_path(cocktail) do %>
+          <div class="card-category py-3" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9)), url('<%= cl_image_path cocktail.photo.key, transformation: [{crop: "crop", width: 900, height:1400},{width: 200, height: 400, gravity: 'auto', crop: "fill", quality: 100}] %>')">
+            <%= cocktail.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-  <%= simple_form_for :search, url: cocktails_path, method: "GET", html: { class: "col-6" } do |f| %>
-    <div class="input-group">
-      <%= f.input :name, label: false, input_html: { placeholder: "Find a cocktail", value: nil, class: "form-control-sm" } %>
-      <%= f.submit "search", class: "btn btn-sm btn-success" %>
-    </div>
-  <% end %>
 </div>
-
-<hr>
-
-
-<% @cocktails.each do |cocktail| %>
-  <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
-<% end %>
-
-## just commit
