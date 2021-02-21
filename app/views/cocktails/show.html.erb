@@ -1,21 +1,50 @@
-<%= link_to "back to cocktails", cocktails_path %>
-<%= link_to "edit cocktail", edit_cocktail_path(@cocktail) %>
+<div class= "text-center py-3">
+  <span class="show-title"><%= @cocktail.name %> <i class="fas fa-cocktail"></i></span>
+  <p><%= @cocktail.average_rating ? "average rating: #{@cocktail.average_rating}" : "not yet rated" %></p>
+</div>
 
-<h1><%= @cocktail.name %> <i class="fas fa-cocktail"></i></h1>
-
-<ul>
-  <% @cocktail.doses.each do |dose| %>
-    <li><%= "#{dose.description} of #{dose.ingredient.name}" %></li>
-  <% end %>
-</ul>
+<div class="row d-flex justify-content-center">
+  <div class="col-5 d-flex justify-content-end">
+    <%= cl_image_tag(@cocktail.photo.key, transformation: [ {crop: "crop", width: 900, height:1400},
+                                                          {width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}]) %>
+  </div>
+  <div class="col-5 align-self-center">
+    <% @cocktail.doses.each do |dose| %>
+      <p><%= "#{dose.description} of #{dose.ingredient.name}" %></p>
+    <% end %>
+    <%= button_to "edit cocktail", edit_cocktail_path(@cocktail), method: :get, class: "btn btn-sm btn-success" %>
+  </div>
+</div>
 
 <hr>
 <%= render "reviews/new", cocktail: @cocktail, review: @review %>
 <hr>
-
-<% @cocktail.reviews.order("rating DESC").each do |review|%>
-  <p><%= "rating: #{review.rating}" %></p>
-  <p><%= review.content %></p>
-  <p><%= "by #{review.user}" %></p>
-  <hr>
+<% if @cocktail.reviews.empty? %>
+  <p class="text-center">No reviews here. Be the first hipster to write one!</p>
+<% else %>
+  <div class="row d-flex">
+    <% @cocktail.reviews.order("likes DESC").each do |review|%>
+      <div id="review-<%= review.id %>" class="col-3 my-3">
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+          <div class="card-header text-white bg-success mb-3">
+            <%= link_to like_review_path(review), method: :patch, remote: true do %>
+              <i class="fas fa-thumbs-up text-white"></i>
+            <% end %>
+            (<%= review.likes %>)
+          </div>
+          <div class="card-body text-success">
+            <p class="text-end"><%= "rated: #{review.rating}" %></p>
+            <p class="card-text"><%= review.content %></p>
+            <h5 class="card-title"><%= "by #{review.user}" %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
+
+<div class="my-3">
+  <%= link_to cocktails_path do %>
+    <i class="fas fa-backward icon-link text-success"></i>
+  <% end %>
+</div>
