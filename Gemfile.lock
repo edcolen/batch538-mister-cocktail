@@ -220,7 +220,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
-  bootsnap (>= 1.4.4)
+  bootsnap
   bootstrap (~> 5.0.0.beta1)
   byebug
   cloudinary
