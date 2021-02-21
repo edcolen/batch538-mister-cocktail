@@ -1,0 +1,10 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <%= link_to "Marcelinho's Hipster Cocktails", root_path, class:"ms-3 page-title text-success" %>
+    <%= button_to "create a new cocktail", new_cocktail_path, method: :get, class: "btn btn-sm btn-success"%>
+    <%= simple_form_for :search, url: cocktails_path, method: "GET", html: { class: "d-flex" } do |f| %>
+      <%= f.input :name, label: false, input_html: { placeholder: "Find a cocktail", value: nil, class: "form-control me-2" } %>
+      <%= f.submit "search", class: "btn btn-outline-success" %>
+    <% end %>
+  </div>
+</nav>

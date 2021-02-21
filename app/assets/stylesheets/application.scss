@@ -1,2 +1,21 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "../stylesheets/components/card";
+@import "../stylesheets/config/fonts";
+.page-title {
+    font-family: "Lobster", cursive;
+    font-size: 2rem;
+}
+
+.show-title {
+    font-family: "Lobster", cursive;
+    font-size: 3rem;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.icon-link {
+    font-size: 2rem;
+}
