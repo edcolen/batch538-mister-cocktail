@@ -1,0 +1,21 @@
+<%= link_to "back to cocktails", cocktails_path %>
+<%= link_to "edit cocktail", edit_cocktail_path(@cocktail) %>
+
+<h1><%= @cocktail.name %> <i class="fas fa-cocktail"></i></h1>
+
+<ul>
+  <% @cocktail.doses.each do |dose| %>
+    <li><%= "#{dose.description} of #{dose.ingredient.name}" %></li>
+  <% end %>
+</ul>
+
+<hr>
+<%= render "reviews/new", cocktail: @cocktail, review: @review %>
+<hr>
+
+<% @cocktail.reviews.order("rating DESC").each do |review|%>
+  <p><%= "rating: #{review.rating}" %></p>
+  <p><%= review.content %></p>
+  <p><%= "by #{review.user}" %></p>
+  <hr>
+<% end %>

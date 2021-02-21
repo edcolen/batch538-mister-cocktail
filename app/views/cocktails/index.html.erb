@@ -1,0 +1,22 @@
+<%= link_to root_path do %>
+  <h1>Marcelinho Hipster Cocktails</h1>
+<% end %>
+
+<div class="row py-3">
+  <div class="col-4">
+    <%= button_to "create a new cocktail", new_cocktail_path, method: :get, class: "btn btn-sm btn-success"%>
+  </div>
+  <%= simple_form_for :search, url: cocktails_path, method: "GET", html: { class: "col-6" } do |f| %>
+    <div class="input-group">
+      <%= f.input :name, label: false, input_html: { placeholder: "Find a cocktail", value: nil, class: "form-control-sm" } %>
+      <%= f.submit "search", class: "btn btn-sm btn-success" %>
+    </div>
+  <% end %>
+</div>
+
+<hr>
+
+
+<% @cocktails.each do |cocktail| %>
+  <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
+<% end %>
