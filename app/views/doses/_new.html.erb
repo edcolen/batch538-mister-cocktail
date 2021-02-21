@@ -1,0 +1,6 @@
+<h3>Add a new dose</h3>
+<%= simple_form_for [cocktail, dose] do |f| %>
+  <%= f.input :description, label: false, input_html: {placeholder: "Add a description here..."} %>
+  <%= f.association :ingredient, collection: Ingredient.order('name'), include_blank: "Choose an ingredient...", include_hidden: false, label: false, as: :select, input_html: { class: 'select2' }  %>
+  <%= f.submit class: "btn btn-sm btn-success" %>
+<% end %>
