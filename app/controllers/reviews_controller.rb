@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.cocktail = @cocktail
     if @review.save
-      redirect_to @cocktail
+      redirect_to cocktail_path(@review.cocktail, anchor: "review-#{@review.id}")
     else
       @dose = Dose.new
       render 'cocktails/show'
