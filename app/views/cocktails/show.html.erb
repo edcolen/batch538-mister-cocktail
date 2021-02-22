@@ -4,7 +4,7 @@
 </div>
 
 <div class="row d-flex justify-content-center">
-  <div class="col-sm-5 col-12 d-flex justify-content-end">
+  <div class="col-sm-5 col-12 d-flex justify-content-end pb-3">
     <%= cl_image_tag(@cocktail.photo.key, transformation: [ {crop: "crop", width: 900, height:1400},
                                                           {width: 200, hight: 300, gravity: 'auto', crop: "fill", quality: 100}]) %>
   </div>
@@ -12,7 +12,7 @@
     <% @cocktail.doses.each do |dose| %>
       <p><%= "#{dose.description} of #{dose.ingredient.name}" %></p>
     <% end %>
-    <%= button_to "edit cocktail", edit_cocktail_path(@cocktail), method: :get, class: "btn btn-sm btn-success" %>
+    <%= button_to "edit cocktail", edit_cocktail_path(@cocktail), method: :get, class: "btn btn-success" %>
   </div>
 </div>
 

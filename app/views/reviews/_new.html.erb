@@ -1,4 +1,6 @@
-<h3>Review this cocktail</h3>
+<div class= "text-center py-1">
+  <span class="secondary-title fs-3">Review this cocktail</span>
+</div>
 <%= simple_form_for [cocktail, review], html: { class: "row g-3" } do |f| %>
   <div class="col-12">
     <%= f.input :content, label: false, input_html: { placeholder: "Add your review here...", class: "form-control-sm w-100" } %>
