@@ -1,5 +1,9 @@
-<%= link_to "back to cocktails", cocktails_path %>
-
-<h1>Create new unique hipster drink</h1>
+<p class="secondary-title fs-3">Create a new unique hipster drink</p>
 
 <%= render "form", cocktail: @cocktail %>
+
+<div class="my-3">
+  <%= link_to cocktails_path do %>
+    <i class="fas fa-backward icon-link text-success"></i>
+  <% end %>
+</div>
